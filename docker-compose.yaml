@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:10.7
+    restart: always
+    privileged: true
+    build:
+      dockerfile: Dockerfile.postgres
+      context: ./
+    ports:
+      - "45432:5432" #make sure the host port is open !!!
+    volumes:
+      - ./data/postgresql:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_DB: ${POSTGRES_DB}
+
+  # this is mlflow batch run service
+  mlflow-tracking-server:
+    image: mlflow-tracking-server
+    restart: always
+    privileged: true
+    build:
+      dockerfile: Dockerfile.mlflow
+      context: ./
+      args:
+      - MY_ENV=production
+    ports:
+      - "5000:5000"
+    volumes:
+      - /Users:/Users
+    environment:
+      POSTGRES_HOST : ${POSTGRES_HOST}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_DB: ${POSTGRES_DB}
+      ARTIFACT_ROOT: ${ARTIFACT_ROOT}
