@@ -6,7 +6,7 @@ services:
     restart: always
     privileged: true
     build:
-      dockerfile: Dockerfile.postgres
+      dockerfile: postgres.Dockerfile
       context: ./
     ports:
       - "45432:5432" #make sure the host port is open !!!
@@ -23,7 +23,7 @@ services:
     restart: always
     privileged: true
     build:
-      dockerfile: Dockerfile.mlflow
+      dockerfile: mlflow.Dockerfile
       context: ./
       args:
       - MY_ENV=production
