@@ -1,3 +1,5 @@
 mlflow
+boto3
+botocore
 psycopg2
 psycopg2-binary
