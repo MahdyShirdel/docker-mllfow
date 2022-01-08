@@ -4,7 +4,7 @@ services:
   postgres:
     image: postgres:10.7
     restart: always
-    privileged: true
+    privileged: false
     build:
       dockerfile: postgres.Dockerfile
       context: ./
@@ -21,7 +21,7 @@ services:
   mlflow-tracking-server:
     image: mlflow-tracking-server
     restart: always
-    privileged: true
+    privileged: false
     build:
       dockerfile: mlflow.Dockerfile
       context: ./
