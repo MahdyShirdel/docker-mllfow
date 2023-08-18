@@ -12,14 +12,20 @@ POSTGRES_PASSWORD=POSTGRES_PASSWORD
 POSTGRES_USER=POSTGRES_USER
 POSTGRES_DB=POSTGRES_DB
 ARTIFACT_ROOT=ARTIFACT_ROOT
+MLFLOW_TRACKING_USERNAME=MLFLOW_TRACKING_USERNAME
+MLFLOW_TRACKING_PASSWORD=MLFLOW_TRACKING_PASSWORD
+MLFLOW_UPDATED_USERNAME=MLFLOW_UPDATED_USERNAME
+MLFLOW_UPDATED_PASSWORD=MLFLOW_UPDATED_PASSWORD
+MLFLOW_TRACKING_URI=http://0.0.0.0:5000
 ```
 
 Once these variables are set, follow these commands to run the tracking server:
 
 ```
-docker-compose up
+docker-compose up --build
 ```
 
+Afterward, run the authentication script in the docker container to change the default credentials.
 
 
 ## More Info on Docker Image with Postgres
